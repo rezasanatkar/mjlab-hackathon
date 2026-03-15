@@ -1,0 +1,786 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>FBX2Robot LLM Demo Layer &#8212; mjlab Documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/twemoji.css" />
+    <link rel="stylesheet" type="text/css" href="/home/runner/work/mjlab-hackathon/mjlab-hackathon/.venv/lib/python3.13/site-packages/sphinxcontrib/icon/node_modules/@fortawesome/fontawesome-free/css/all.min.css?v=53359634" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=3ea80bc3" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="https://unpkg.com/twemoji@latest/dist/twemoji.min.js"></script>
+    <script src="_static/twemoji.js"></script>
+    <script src="/home/runner/work/mjlab-hackathon/mjlab-hackathon/.venv/lib/python3.13/site-packages/sphinxcontrib/icon/node_modules/@fortawesome/fontawesome-free/js/all.min.js?v=ec35c6c9"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'LLM_DEMO';</script>
+    <link rel="icon" href="_static/favicon.ico"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+    <meta name="docbuild:last-update" content="Mar 15, 2026"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">mjlab Documentation</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+        <div class="sidebar-primary-item">
+<div class="sidebar-version-switcher">
+  <label class="sidebar-version-label" for="version-select">Version</label>
+  <select id="version-select" class="sidebar-version-select" onchange="location = this.value;">
+    <option value="LLM_DEMO.html" selected>main</option>
+  </select>
+</div>
+</div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="source/installation.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="source/tutorials.html">Tutorials</a></li>
+<li class="toctree-l1"><a class="reference internal" href="source/contributing.html">Contributing</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Concepts</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="source/architecture_overview.html">Architecture Overview</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="source/entity/index.html">Entity</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="source/entity/entity_data.html">Entity Data</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="source/actuators.html">Actuators</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="source/sensors/index.html">Sensors</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="source/sensors/raycast_sensor.html">RayCast Sensor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="source/sensors/rgbd_camera.html">RGB-D Camera</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="source/scene.html">Scene</a></li>
+<li class="toctree-l1"><a class="reference internal" href="source/terrain.html">Terrain</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">The Manager Layer</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="source/environment_config.html">Environment Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="source/observations.html">Observations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="source/actions.html">Actions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="source/rewards.html">Rewards</a></li>
+<li class="toctree-l1"><a class="reference internal" href="source/terminations.html">Terminations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="source/commands.html">Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="source/events.html">Events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="source/randomization.html">Domain Randomization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="source/curriculum.html">Curriculum</a></li>
+<li class="toctree-l1"><a class="reference internal" href="source/metrics.html">Metrics</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Training &amp; Debugging</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="source/training/rsl_rl.html">Training with RSL-RL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="source/viewers.html">Viewers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="source/training/distributed_training.html">Distributed Training</a></li>
+<li class="toctree-l1"><a class="reference internal" href="source/debugging/nan_guard.html">NaN Guard</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="source/api/index.html">API Reference</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="source/api/envs.html">mjlab.envs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="source/api/scene.html">mjlab.scene</a></li>
+<li class="toctree-l2"><a class="reference internal" href="source/api/sim.html">mjlab.sim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="source/api/entity.html">mjlab.entity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="source/api/actuator.html">mjlab.actuator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="source/api/sensor.html">mjlab.sensor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="source/api/managers.html">mjlab.managers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="source/api/terrains.html">mjlab.terrains</a></li>
+<li class="toctree-l2"><a class="reference internal" href="source/api/rl.html">mjlab.rl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="source/api/viewer.html">mjlab.viewer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="source/api/tasks.html">mjlab.tasks</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Further Reading</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="source/motivation.html">Why mjlab?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="source/migration_isaac_lab.html">Migrating from Isaac Lab</a></li>
+<li class="toctree-l1"><a class="reference internal" href="source/faq.html">FAQ &amp; Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="source/changelog.html">Changelog</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/mujocolab/mjlab" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/mujocolab/mjlab/edit/main/docs/LLM_DEMO.md" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/mujocolab/mjlab/issues/new?title=Issue%20on%20page%20%2FLLM_DEMO.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/LLM_DEMO.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>FBX2Robot LLM Demo Layer</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quick-start">Quick Start</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interactive-cli-demo">Interactive CLI Demo</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#streamlit-web-demo">Streamlit Web Demo</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#architecture">Architecture</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#motion-catalog-motion-catalog-py">Motion Catalog (<code class="docutils literal notranslate"><span class="pre">motion_catalog.py</span></code>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prompt-router-prompt-router-py">Prompt Router (<code class="docutils literal notranslate"><span class="pre">prompt_router.py</span></code>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#demo-narrator-narrator-py">Demo Narrator (<code class="docutils literal notranslate"><span class="pre">narrator.py</span></code>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conversation-manager-conversation-py">Conversation Manager (<code class="docutils literal notranslate"><span class="pre">conversation.py</span></code>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#demo-runner-demo-runner-py">Demo Runner (<code class="docutils literal notranslate"><span class="pre">demo_runner.py</span></code>)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#demo-script">Demo Script</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#llm-enhancement">LLM Enhancement</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#web-demo-features">Web Demo Features</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-queries">Example Queries</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#integration-with-training">Integration with Training</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#troubleshooting">Troubleshooting</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#streamlit-not-found">Streamlit not found</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#openai-errors">OpenAI errors</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#motion-not-playing">Motion not playing</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="fbx2robot-llm-demo-layer">
+<h1>FBX2Robot LLM Demo Layer<a class="headerlink" href="#fbx2robot-llm-demo-layer" title="Link to this heading">#</a></h1>
+<p>The LLM demo layer provides an interactive judge-facing interface for demonstrating
+the FBX2Robot pipeline. It supports natural language queries, motion selection,
+and playback integration.</p>
+<section id="quick-start">
+<h2>Quick Start<a class="headerlink" href="#quick-start" title="Link to this heading">#</a></h2>
+<section id="interactive-cli-demo">
+<h3>Interactive CLI Demo<a class="headerlink" href="#interactive-cli-demo" title="Link to this heading">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Basic demo</span>
+python<span class="w"> </span>scripts/run_demo.py
+
+<span class="c1"># With LLM enhancement</span>
+python<span class="w"> </span>scripts/run_demo.py<span class="w"> </span>--use-llm
+
+<span class="c1"># Process a single query</span>
+python<span class="w"> </span>scripts/run_demo.py<span class="w"> </span>--query<span class="w"> </span><span class="s2">&quot;show me a greeting&quot;</span>
+
+<span class="c1"># Print demo script for judges</span>
+python<span class="w"> </span>scripts/run_demo.py<span class="w"> </span>--script
+</pre></div>
+</div>
+</section>
+<section id="streamlit-web-demo">
+<h3>Streamlit Web Demo<a class="headerlink" href="#streamlit-web-demo" title="Link to this heading">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Install streamlit (if not already installed)</span>
+uv<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>streamlit
+
+<span class="c1"># Run web demo</span>
+uv<span class="w"> </span>run<span class="w"> </span>streamlit<span class="w"> </span>run<span class="w"> </span>scripts/run_streamlit_demo.py
+</pre></div>
+</div>
+</section>
+</section>
+<section id="architecture">
+<h2>Architecture<a class="headerlink" href="#architecture" title="Link to this heading">#</a></h2>
+<p>The LLM demo layer consists of these components:</p>
+<section id="motion-catalog-motion-catalog-py">
+<h3>Motion Catalog (<code class="docutils literal notranslate"><span class="pre">motion_catalog.py</span></code>)<a class="headerlink" href="#motion-catalog-motion-catalog-py" title="Link to this heading">#</a></h3>
+<p>Manages the catalog of available motions and their metadata.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">fbx2robot.llm_demo</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_catalog</span>
+
+<span class="n">catalog</span> <span class="o">=</span> <span class="n">get_catalog</span><span class="p">()</span>
+<span class="n">motions</span> <span class="o">=</span> <span class="n">catalog</span><span class="o">.</span><span class="n">list_motions</span><span class="p">()</span>
+<span class="n">trained</span> <span class="o">=</span> <span class="n">catalog</span><span class="o">.</span><span class="n">list_trained_motions</span><span class="p">()</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">catalog</span><span class="o">.</span><span class="n">search_by_keyword</span><span class="p">(</span><span class="s2">&quot;greeting&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="prompt-router-prompt-router-py">
+<h3>Prompt Router (<code class="docutils literal notranslate"><span class="pre">prompt_router.py</span></code>)<a class="headerlink" href="#prompt-router-prompt-router-py" title="Link to this heading">#</a></h3>
+<p>Routes natural language queries to appropriate motions.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">fbx2robot.llm_demo</span><span class="w"> </span><span class="kn">import</span> <span class="n">route_prompt</span>
+
+<span class="n">result</span> <span class="o">=</span> <span class="n">route_prompt</span><span class="p">(</span><span class="s2">&quot;show me a bow greeting&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">matched_motion</span><span class="p">)</span>  <span class="c1"># MotionEntry for bow_greeting</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">confidence</span><span class="p">)</span>       <span class="c1"># 0.7</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">explanation</span><span class="p">)</span>      <span class="c1"># Description of the match</span>
+</pre></div>
+</div>
+</section>
+<section id="demo-narrator-narrator-py">
+<h3>Demo Narrator (<code class="docutils literal notranslate"><span class="pre">narrator.py</span></code>)<a class="headerlink" href="#demo-narrator-narrator-py" title="Link to this heading">#</a></h3>
+<p>Generates explanations and narration for the demo.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">fbx2robot.llm_demo</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_narrator</span>
+
+<span class="n">narrator</span> <span class="o">=</span> <span class="n">get_narrator</span><span class="p">(</span><span class="n">use_llm</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">narrator</span><span class="o">.</span><span class="n">introduce_project</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">narrator</span><span class="o">.</span><span class="n">summarize_results</span><span class="p">())</span>
+</pre></div>
+</div>
+</section>
+<section id="conversation-manager-conversation-py">
+<h3>Conversation Manager (<code class="docutils literal notranslate"><span class="pre">conversation.py</span></code>)<a class="headerlink" href="#conversation-manager-conversation-py" title="Link to this heading">#</a></h3>
+<p>Handles multi-turn conversations with context.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">fbx2robot.llm_demo</span><span class="w"> </span><span class="kn">import</span> <span class="n">ConversationManager</span>
+
+<span class="n">conv</span> <span class="o">=</span> <span class="n">ConversationManager</span><span class="p">(</span><span class="n">use_llm</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">conv</span><span class="o">.</span><span class="n">process_message</span><span class="p">(</span><span class="s2">&quot;show me a dance&quot;</span><span class="p">)</span>
+<span class="n">response</span> <span class="o">=</span> <span class="n">conv</span><span class="o">.</span><span class="n">process_message</span><span class="p">(</span><span class="s2">&quot;play it&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="demo-runner-demo-runner-py">
+<h3>Demo Runner (<code class="docutils literal notranslate"><span class="pre">demo_runner.py</span></code>)<a class="headerlink" href="#demo-runner-demo-runner-py" title="Link to this heading">#</a></h3>
+<p>Main orchestration for the demo.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">fbx2robot.llm_demo</span><span class="w"> </span><span class="kn">import</span> <span class="n">DemoRunner</span>
+
+<span class="n">runner</span> <span class="o">=</span> <span class="n">DemoRunner</span><span class="p">(</span><span class="n">use_llm</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">runner</span><span class="o">.</span><span class="n">run_interactive</span><span class="p">()</span>  <span class="c1"># Interactive CLI session</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="demo-script">
+<h2>Demo Script<a class="headerlink" href="#demo-script" title="Link to this heading">#</a></h2>
+<p>The included demo script provides a structured walkthrough for judges:</p>
+<ol class="arabic simple">
+<li><p><strong>Introduction</strong>: Overview of FBX2Robot</p></li>
+<li><p><strong>Pipeline Flow</strong>: How animations become robot motions</p></li>
+<li><p><strong>Motion Selection</strong>: Interactive query demonstration</p></li>
+<li><p><strong>Playback</strong>: Live motion execution</p></li>
+<li><p><strong>Q&amp;A</strong>: Answer judge questions</p></li>
+</ol>
+<p>Run <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">scripts/run_demo.py</span> <span class="pre">--script</span></code> to see the full script.</p>
+</section>
+<section id="llm-enhancement">
+<h2>LLM Enhancement<a class="headerlink" href="#llm-enhancement" title="Link to this heading">#</a></h2>
+<p>When <code class="docutils literal notranslate"><span class="pre">use_llm=True</span></code>, the demo uses OpenAI’s GPT-4o-mini for:</p>
+<ul class="simple">
+<li><p>Enhanced natural language understanding</p></li>
+<li><p>Better motion matching</p></li>
+<li><p>Contextual Q&amp;A responses</p></li>
+</ul>
+<p>Set your API key:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">OPENAI_API_KEY</span><span class="o">=</span>your-key-here
+</pre></div>
+</div>
+<p>Or pass it in code:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">fbx2robot.config</span><span class="w"> </span><span class="kn">import</span> <span class="n">Config</span>
+<span class="n">config</span> <span class="o">=</span> <span class="n">Config</span><span class="p">(</span><span class="n">openai_api_key</span><span class="o">=</span><span class="s2">&quot;your-key&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="web-demo-features">
+<h2>Web Demo Features<a class="headerlink" href="#web-demo-features" title="Link to this heading">#</a></h2>
+<p>The Streamlit web demo includes:</p>
+<ul class="simple">
+<li><p><strong>Interactive Chat</strong>: Natural language motion queries</p></li>
+<li><p><strong>Motion Catalog</strong>: Browse all available motions</p></li>
+<li><p><strong>Training Status</strong>: View progress and metrics</p></li>
+<li><p><strong>How It Works</strong>: Technical explanation</p></li>
+</ul>
+</section>
+<section id="example-queries">
+<h2>Example Queries<a class="headerlink" href="#example-queries" title="Link to this heading">#</a></h2>
+<p>The system understands queries like:</p>
+<ul class="simple">
+<li><p>“Show me a greeting”</p></li>
+<li><p>“Make the robot bow”</p></li>
+<li><p>“Do something celebratory”</p></li>
+<li><p>“Play the dance”</p></li>
+<li><p>“What motions are available?”</p></li>
+<li><p>“How does this work?”</p></li>
+</ul>
+</section>
+<section id="integration-with-training">
+<h2>Integration with Training<a class="headerlink" href="#integration-with-training" title="Link to this heading">#</a></h2>
+<p>After training completes, update the catalog:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">fbx2robot.llm_demo</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_catalog</span>
+
+<span class="n">catalog</span> <span class="o">=</span> <span class="n">get_catalog</span><span class="p">()</span>
+<span class="n">catalog</span><span class="o">.</span><span class="n">update_motion</span><span class="p">(</span>
+    <span class="s2">&quot;bow_greeting&quot;</span><span class="p">,</span>
+    <span class="n">wandb_run_path</span><span class="o">=</span><span class="s2">&quot;asggm03-startup/fbx2robot-hackathon/runs/abc123&quot;</span><span class="p">,</span>
+    <span class="n">training_status</span><span class="o">=</span><span class="s2">&quot;trained&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">catalog</span><span class="o">.</span><span class="n">save_catalog</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="s2">&quot;data/motion_catalog.json&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</section>
+<section id="troubleshooting">
+<h2>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Link to this heading">#</a></h2>
+<section id="streamlit-not-found">
+<h3>Streamlit not found<a class="headerlink" href="#streamlit-not-found" title="Link to this heading">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>uv<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>streamlit
+</pre></div>
+</div>
+</section>
+<section id="openai-errors">
+<h3>OpenAI errors<a class="headerlink" href="#openai-errors" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Check API key is set</p></li>
+<li><p>Verify internet connection</p></li>
+<li><p>Check OpenAI account has credits</p></li>
+</ul>
+</section>
+<section id="motion-not-playing">
+<h3>Motion not playing<a class="headerlink" href="#motion-not-playing" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Ensure motion is trained (status: “trained”)</p></li>
+<li><p>Check W&amp;B run path is correct</p></li>
+<li><p>Verify mjlab environment is active</p></li>
+</ul>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quick-start">Quick Start</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#interactive-cli-demo">Interactive CLI Demo</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#streamlit-web-demo">Streamlit Web Demo</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#architecture">Architecture</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#motion-catalog-motion-catalog-py">Motion Catalog (<code class="docutils literal notranslate"><span class="pre">motion_catalog.py</span></code>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prompt-router-prompt-router-py">Prompt Router (<code class="docutils literal notranslate"><span class="pre">prompt_router.py</span></code>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#demo-narrator-narrator-py">Demo Narrator (<code class="docutils literal notranslate"><span class="pre">narrator.py</span></code>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conversation-manager-conversation-py">Conversation Manager (<code class="docutils literal notranslate"><span class="pre">conversation.py</span></code>)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#demo-runner-demo-runner-py">Demo Runner (<code class="docutils literal notranslate"><span class="pre">demo_runner.py</span></code>)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#demo-script">Demo Script</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#llm-enhancement">LLM Enhancement</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#web-demo-features">Web Demo Features</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-queries">Example Queries</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#integration-with-training">Integration with Training</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#troubleshooting">Troubleshooting</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#streamlit-not-found">Streamlit not found</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#openai-errors">OpenAI errors</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#motion-not-playing">Motion not playing</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The mjlab Developers
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025, The mjlab Developers.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    <p class="last-updated">
+  Last updated on Mar 15, 2026.
+  <br/>
+</p>
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
